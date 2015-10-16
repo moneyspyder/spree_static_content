@@ -20,20 +20,40 @@
       <%= f.error_message_on :body %>
     </div>
     <div class="form-group field">
-      <%= f.label :layout %><br />
-      <%= f.text_field :layout, :class => 'fullwidth title' %>
+      <%= f.label :layout %>
+      <%= f.text_field :layout, :class => 'form-control' %>
     </div>
 
     <div class="form-group field">
       <%= f.label :foreign_link %><br />
-      <%= f.text_field :foreign_link, :class => 'fullwidth title' %>
+      <%= f.text_field :foreign_link, :class => 'form-control' %>
     </div>
 
     <div class="form-group field">
-      <%= f.label :position %><br />
-      <%= f.number_field :position, :min => 0, :class => 'fullwidth title' %>
+      <%= f.label :meta_title %><br />
+      <%= f.text_field :meta_title, :class => 'form-control' %>
+      <%= f.error_message_on :meta_title %>
     </div>
 
+    <div class="form-group field">
+      <%= f.label :meta_keywords %><br />
+      <%= f.text_field :meta_keywords, :class => 'form-control' %>
+      <%= f.error_message_on :meta_keywords %>
+    </div>
+
+    <div class="form-group field">
+      <%= f.label :meta_description %><br />
+      <%= f.text_field :meta_description, :class => 'form-control' %>
+      <%= f.error_message_on :meta_description %>
+    </div>    
+
+  </div>
+
+<!--     <div class="form-group field">
+      <%= f.label :position %><br />
+      <%= f.number_field :position, :min => 0, :class => 'fullwidth title' %>
+    </div> -->
+<!--
     <div class="form-group field">
       <%= f.check_box :show_in_sidebar %>
       <%= f.label :show_in_sidebar %>
@@ -48,6 +68,8 @@
       <%= f.check_box :show_in_footer %>
       <%= f.label :show_in_footer %>
     </div>
+-->
+  <div class="col-md-6" data-hook="admin_page_form_right">
 
     <div class="form-group field">
       <%= f.check_box :visible %>
@@ -59,33 +81,20 @@
       <%= f.label :render_layout_as_partial %>
     </div>
 
-    <div class="form-group field">
+    <% if Spree::Store.count > 1 %>
+      <div class="form-group field">
 
-      <%= f.label :stores, Spree.t(:stores)%><br />
-      <% Spree::Store.all.each do |store| %>
-        <%= check_box_tag "page[store_ids][]", store.id, @page.stores.include?(store) %> <%= store.name %>
-      <% end %>
-    </div>
-    <div class="form-group field">
-      <%= f.label :meta_title %><br />
-      <%= f.text_field :meta_title, :class => 'fullwidth title' %>
-      <%= f.error_message_on :meta_title %>
-    </div>
-
-    <div class="form-group field">
-      <%= f.label :meta_keywords %><br />
-      <%= f.text_field :meta_keywords, :class => 'fullwidth title' %>
-      <%= f.error_message_on :meta_keywords %>
-    </div>
-
-    <div class="form-group field">
-      <%= f.label :meta_description %><br />
-      <%= f.text_field :meta_description, :class => 'fullwidth title' %>
-      <%= f.error_message_on :meta_description %>
-    </div>
+        <%= f.label :stores, Spree.t(:stores)%><br />
+        <% Spree::Store.all.each do |store| %>
+          <%= check_box_tag "page[store_ids][]", store.id, @page.stores.include?(store) %> <%= store.name %>
+        <% end %>
+      </div>
+    <% else %>
+      <%= hidden_field_tag 'page[store_ids][]', Spree::Store.first.id %>
+    <% end %>
 
     </div>
-  </div>
+  <!-- </div> -->
 </div>
 <%= render "spree/admin/shared/#{@page.new_record? ? 'new' : 'edit'}_resource_links" %>
 <% end %>
