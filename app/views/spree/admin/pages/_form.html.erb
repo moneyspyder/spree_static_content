@@ -1,4 +1,3 @@
-
 <%= form_for [:admin, @page] do |f| %>
 <div class="row" data-hook="admin_page_form_fields">
   <div class="col-md-6" data-hook="admin_page_form_left">
@@ -96,5 +95,11 @@
     </div>
   <!-- </div> -->
 </div>
+
+<% unless f.object.layout.blank? %>
+  <div class="row">
+    <%= render 'spree/admin/pages/layout/'+f.object.layout, f: f %>
+  </div>
+<% end %>
 <%= render "spree/admin/shared/#{@page.new_record? ? 'new' : 'edit'}_resource_links" %>
 <% end %>

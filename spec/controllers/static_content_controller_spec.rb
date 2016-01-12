@@ -5,7 +5,7 @@ describe Spree::StaticContentController do
     controller.stub spree_current_user: nil
   end
 
-  let!(:store) { create(:store, default: true) }
+  let!(:store) { binding.pry; create(:store, default: true) }
 
   context '#show' do
     it 'accepts path as root' do

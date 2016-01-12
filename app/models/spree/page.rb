@@ -1,7 +1,10 @@
 class Spree::Page < ActiveRecord::Base
   default_scope -> { order("position ASC") }
 
+  has_many :sections, dependent: :destroy
   has_and_belongs_to_many :stores, :join_table => 'spree_pages_stores'
+
+  accepts_nested_attributes_for :sections
 
   validates_presence_of :title
   validates_presence_of [:slug, :body], :if => :not_using_foreign_link?

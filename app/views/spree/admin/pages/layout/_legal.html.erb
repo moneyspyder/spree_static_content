@@ -1,0 +1,33 @@
+<% f.object.sections.length %>
+
+<% body = f.object.sections.where(identifier: 'legal-body').first_or_initialize %>
+<% sidebar = f.object.sections.where(identifier: 'legal-sidebar').first_or_initialize %>
+
+<% f.object.sections.length %>
+<div class="col-md-8">
+  <%= f.fields_for :sections, body do |section_form| %>
+
+    <div class="form-group field">
+      <%= section_form.label :content %> <span class="required">*</span><br />
+      <%= section_form.text_area :content, {rows: 12, :class => 'form-control'} %>
+      <%# section_form.error_message_on :content %>
+    </div>
+    <%= section_form.hidden_field :identifier %>
+    <%= section_form.hidden_field :page_id %>
+
+  <% end %>
+</div>
+
+<div class="col-md-4">
+  <%= f.fields_for :sections, sidebar do |section_form| %>
+
+    <div class="form-group field">
+      <%= section_form.label :content %> <span class="required">*</span><br />
+      <%= section_form.text_area :content, {rows: 12, :class => 'form-control'} %>
+      <%# section_form.error_message_on :content %>
+    </div>
+    <%= section_form.hidden_field :identifier %>
+    <%= section_form.hidden_field :page_id %>
+
+  <% end %>
+</div>
