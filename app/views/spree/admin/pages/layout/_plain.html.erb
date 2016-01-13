@@ -1,0 +1,16 @@
+<% body = f.object.sections.where(identifier: 'plain-body').first_or_initialize %>
+
+<% f.object.sections.length %>
+<div class="col-md-12">
+  <%= f.fields_for :sections, body do |section_form| %>
+
+    <div class="form-group field">
+      <%= section_form.label :content %> <span class="required">*</span><br />
+      <%= section_form.text_area :content, {rows: 12, class: 'form-control'} %>
+    </div>
+
+    <%= section_form.hidden_field :identifier %>
+    <%= section_form.hidden_field :page_id %>
+
+  <% end %>
+</div>

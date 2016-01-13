@@ -1,13 +1,15 @@
 class Spree::Page < ActiveRecord::Base
-  default_scope -> { order("position ASC") }
+  default_scope -> { order("title ASC") }
 
   has_many :sections, dependent: :destroy
   has_and_belongs_to_many :stores, :join_table => 'spree_pages_stores'
 
   accepts_nested_attributes_for :sections
 
+  before_validation :set_slug
+
   validates_presence_of :title
-  validates_presence_of [:slug, :body], :if => :not_using_foreign_link?
+  validates_presence_of [:slug], :if => :not_using_foreign_link?
   validates_presence_of :layout, :if => :render_layout_as_partial?
 
   validates :slug, :uniqueness => true, :if => :not_using_foreign_link?
@@ -34,6 +36,10 @@ class Spree::Page < ActiveRecord::Base
   end
 
 private
+
+  def set_slug
+    self.slug = "/" + title.parameterize if slug.blank? && title.present?
+  end
 
   def update_positions_and_slug
     # ensure that all slugs start with a slash
