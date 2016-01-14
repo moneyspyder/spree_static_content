@@ -1,0 +1,78 @@
+<% r1c1 = f.object.sections.where(identifier: 'multi-1-r1c1').first_or_initialize %>
+<% r1c2 = f.object.sections.where(identifier: 'multi-1-r1c2').first_or_initialize %>
+<% r2c1 = f.object.sections.where(identifier: 'multi-1-r2c1').first_or_initialize %>
+<% r3c1 = f.object.sections.where(identifier: 'multi-1-r3c1').first_or_initialize %>
+<% r3c2 = f.object.sections.where(identifier: 'multi-1-r3c2').first_or_initialize %>
+<% r4c1 = f.object.sections.where(identifier: 'multi-1-r4c1').first_or_initialize %>
+
+<%# R1 C1 %>
+<div class="col-md-6">
+  <%= f.fields_for :sections, r1c1 do |section_form| %>
+    <div class="form-group field">
+      <%= section_form.label :content %> <span class="required">*</span><br />
+      <%= section_form.text_area :content, {rows: 12, class: 'form-control'} %>
+    </div>
+    <%= section_form.hidden_field :identifier %>
+    <%= section_form.hidden_field :page_id %>
+  <% end %>
+</div>
+
+<%# R1 C2 %>
+<div class="col-md-6">
+  <%= f.fields_for :sections, r1c2 do |section_form| %>
+    <div class="form-group field">
+      <%= section_form.label :content %> <span class="required">*</span><br />
+      <%= section_form.text_area :content, {rows: 12, class: 'form-control'} %>
+    </div>
+    <%= section_form.hidden_field :identifier %>
+    <%= section_form.hidden_field :page_id %>
+  <% end %>
+</div>
+
+<%# R2 C1 %>
+<div class="col-md-12">
+  <%= f.fields_for :sections, r2c1 do |section_form| %>
+    <div class="form-group field">
+      <%= section_form.label :content %> <span class="required">*</span><br />
+      <%= section_form.text_area :content, {rows: 12, class: 'form-control'} %>
+    </div>
+    <%= section_form.hidden_field :identifier %>
+    <%= section_form.hidden_field :page_id %>
+  <% end %>
+</div>
+
+<%# R3 C1 %>
+<div class="col-md-6">
+  <%= f.fields_for :sections, r3c1 do |section_form| %>
+    <div class="form-group field">
+      <%= section_form.label :content %> <span class="required">*</span><br />
+      <%= section_form.text_area :content, {rows: 12, class: 'form-control'} %>
+    </div>
+    <%= section_form.hidden_field :identifier %>
+    <%= section_form.hidden_field :page_id %>
+  <% end %>
+</div>
+
+<%# R3 C2 %>
+<div class="col-md-6">
+  <%= f.fields_for :sections, r3c2 do |section_form| %>
+    <div class="form-group field">
+      <%= section_form.label :content %> <span class="required">*</span><br />
+      <%= section_form.text_area :content, {rows: 12, class: 'form-control'} %>
+    </div>
+    <%= section_form.hidden_field :identifier %>
+    <%= section_form.hidden_field :page_id %>
+  <% end %>
+</div>
+
+<%# R4 C1 %>
+<div class="col-md-12">
+  <%= f.fields_for :sections, r4c1 do |section_form| %>
+    <div class="form-group field">
+      <%= section_form.label :content %> <span class="required">*</span><br />
+      <%= section_form.text_area :content, {rows: 12, class: 'form-control'} %>
+    </div>
+    <%= section_form.hidden_field :identifier %>
+    <%= section_form.hidden_field :page_id %>
+  <% end %>
+</div>

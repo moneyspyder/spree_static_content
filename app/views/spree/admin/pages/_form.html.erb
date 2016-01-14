@@ -27,7 +27,8 @@
     <div class="form-group field">
       <%= f.label :layout %>
       <% if f.object.render_layout_as_partial %>
-        <%= f.select :layout, [["legal", "legal"], ["plain", "plain"]], {:include_blank => ""}, :class => 'form-control' %>
+        <% layouts = %w{plain, legal, multi_1}.collect{ |l| [l, l] } %>
+        <%= f.select :layout, layouts, {:include_blank => ""}, :class => 'form-control' %>
       <% else %>
         <%= f.text_field :layout, :class => 'form-control' %>
       <% end %>
