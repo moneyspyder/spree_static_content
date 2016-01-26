@@ -6,6 +6,9 @@ class Spree::StaticContentController < Spree::StoreController
 
   def show
     @page = Spree::Page.by_store(current_store).visible.find_by_slug!(request.path)
+
+    # required by Spree meta data tags
+    @static_content = @page
   end
 
   private
